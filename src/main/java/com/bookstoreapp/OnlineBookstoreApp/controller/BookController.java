@@ -34,6 +34,14 @@ public class BookController {
         return book != null ? ResponseEntity.ok(book) : ResponseEntity.notFound().build();
     }
 
+    // Get book by ID (New method added in feature-add-book branch)
+    @GetMapping("/find/{id}")
+    public ResponseEntity<BookModel> findBookById(@PathVariable Long id) {
+        BookModel book = bookService.getBookById(id);
+        return book != null ? ResponseEntity.ok(book) : ResponseEntity.notFound().build();
+    }
+
+
     // Update book
     @PutMapping("/{id}")
     public ResponseEntity<BookModel> updateBook(@PathVariable Long id, @RequestBody BookModel bookDetails) {
